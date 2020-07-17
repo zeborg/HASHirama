@@ -47,7 +47,10 @@ Once the installation steps are done, CD to the directory where `app.py` is loca
 ```sh
 (myvirtualenv) $ flask run
 ```
-
+\
+Default maximum file upload size is 50 MB, however you can change it in `__init__.py`
+\
+\
 **NOTE:** Use a proper WSGI instead of using the Flask production environment to avoid unusual behavior such as connection reset upon error handling
 
 ## Contributions and Improvements
