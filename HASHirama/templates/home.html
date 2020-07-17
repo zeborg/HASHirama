@@ -3,7 +3,7 @@
 {% block texthash %}
 <form method="POST" action="/">
         {{ th_form.csrf_token }}
-        <h1 class="display-5 row text-white justify-content-center">GENERATE HASH</h1>
+        <h4 class="display-5 row text-white justify-content-center">GENERATE HASH</h4>
         <div class="form-group">
                 <div class="mb-3">
                         <div class="input-group">
@@ -29,7 +29,7 @@
 {% block checktexthash %}
 <form method="POST" action="/">
         {{ ch_th_form.csrf_token }}
-        <h1 class="display-5 row text-white justify-content-center">VERIFY HASH</h1>
+        <h4 class="display-6 row text-white justify-content-center">VERIFY HASH</h4>
         <div class="mb-3">
                 <div class="input-group">
                         <div class="input-group-prepend">
@@ -54,7 +54,7 @@
                         {{ ch_th_form.algo(class="form-control custom-select") }}
                 </div>
         </div>
-        
+
         <div class="row justify-content-center">{{ ch_th_form.ch_thash(class="btn btn-outline-light") }}</div>
 </form>
 {% endblock %}
@@ -62,7 +62,7 @@
 {% block filehash %}
 <form method="POST" action="/" enctype="multipart/form-data">
         {{ fh_form.csrf_token }}
-        <h1 class="display-5 row text-white justify-content-center">GENERATE HASH</h1>
+        <h4 class="display-5 row text-white justify-content-center">GENERATE HASH</h4>
         <div class="form-group">
                 <div class="mb-3">
                         <div class="input-group">
@@ -89,7 +89,7 @@
 {% block checkfilehash %}
 <form method="POST" action="/" enctype="multipart/form-data">
         {{ ch_fh_form.csrf_token }}
-        
+        <h4 class="display-5 row text-white justify-content-center">VERIFY HASH</h4>
         <div class="mb-3">
                 <div class="input-group">
                         <div class="input-group-prepend">

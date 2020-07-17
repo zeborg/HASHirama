@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block template %}
     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
     <li class="nav-item pill-danger" role="presentation">
@@ -39,7 +40,7 @@
     {% endif %}
     {% endwith %}
     <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="text-hash" role="tabpanel" aria-labelledby="text-hash-tab">  
+    <div class="tab-pane fade show active" id="text-hash" role="tabpanel" aria-labelledby="text-hash-tab">
         <div class="container border rounded my-3 py-3">
         {% block texthash %}{% endblock %}
         </div>
