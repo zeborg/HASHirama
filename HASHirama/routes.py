@@ -1,3 +1,4 @@
+import io
 from HASHirama import app, forms, os, hashfx, hashlib, MAX_FILE_SIZE_MB
 from flask import render_template, url_for, redirect, flash
 from werkzeug.utils import secure_filename
@@ -26,29 +27,34 @@ def home():
         flash('success', 'matched!') if ch_th_form.inputhash.data == genhash else flash('warning', 'did not match!')
 
     elif fh_form.validate_on_submit():
-            f = fh_form.fileinput.data
-            fhash = hashfx.fhash()
-            filename = secure_filename(f.filename)
-            filename_str = os.path.join(app.config['UPLOADS_FOLDER'], f'{filename}')
-            f.save(filename_str)
-            msg = fhash.algo(filename_str, 4096, fh_form.algo.data)
-            os.remove(filename_str)
-            h_genr = (True,forms.hashlabel[fh_form.algo.data])
-            flash('success', msg)
+        f = fh_form.fileinput.data
+        fhash = hashfx.fhash()
+        filename = secure_filename(f.filename)
+        filename_str = os.path.join(app.config['UPLOADS_FOLDER'], f'{filename}')
+        if not os.path.exists(app.config['UPLOADS_FOLDER']):
+            os.makedirs(app.config['UPLOADS_FOLDER'])
+        f.save(filename_str)
+        msg = fhash.algo(filename_str, 4096, fh_form.algo.data)
+        os.remove(filename_str)
+        h_genr = (True,forms.hashlabel[fh_form.algo.data])
+        flash('success', msg)
 
     elif ch_fh_form.validate_on_submit():
-            f = ch_fh_form.file_input.data
-            fhash = hashfx.fhash()
-            filename = secure_filename(f.filename)
-            filename_str = os.path.join(app.config['UPLOADS_FOLDER'], f'{filename}')
-            f.save(filename_str)
-            genhash = fhash.algo(filename_str, 4096, ch_fh_form.algo.data)
-            os.remove(filename_str)
-            h_veri = (True,forms.hashlabel[ch_fh_form.algo.data],genhash,True)
-            flash('success', 'matched!') if ch_fh_form.input_hash.data == genhash else flash('warning', 'did not match!')
+        f = ch_fh_form.file_input.data
+        fhash = hashfx.fhash()
+        filename = secure_filename(f.filename)
+        filename_str = os.path.join(app.config['UPLOADS_FOLDER'], f'{filename}')
+        if not os.path.exists(app.config['UPLOADS_FOLDER']):
+            os.makedirs(app.config['UPLOADS_FOLDER'])
+        f.save(filename_str)
+        genhash = fhash.algo(filename_str, 4096, ch_fh_form.algo.data)
+        os.remove(filename_str)
+        h_veri = (True,forms.hashlabel[ch_fh_form.algo.data],genhash,True)
+        flash('success', 'matched!') if ch_fh_form.input_hash.data == genhash else flash('warning', 'did not match!')
 
     return render_template('home.html', th_form=th_form, ch_th_form=ch_th_form, fh_form=fh_form, ch_fh_form=ch_fh_form, generated=h_genr, verified=h_veri)
 
 @app.errorhandler(413)
 def handle_413(err):
     return f'File size exceeded. Maximum allowed file size: {MAX_FILE_SIZE_MB} MB', 413
+
