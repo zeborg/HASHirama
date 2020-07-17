@@ -1,0 +1,9 @@
+.nav-pills .pill-danger .nav-link {
+    background-color: #fff;
+    color: #dc3545;
+}
+
+.nav-pills .pill-danger .nav-link:not(.active) {
+    background-color: #dc3545;
+    color: white;
+}

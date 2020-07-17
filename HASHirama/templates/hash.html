@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block template %}
+    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+    <li class="nav-item pill-danger" role="presentation">
+        <a class="nav-link active" id="text-hash-tab" data-toggle="pill" href="#text-hash" role="tab" aria-selected="true">TEXT HASH</a>
+    </li>
+    <li class="nav-item pill-danger" role="presentation">
+        <a class="nav-link" id="file-hash-tab" data-toggle="pill" href="#file-hash" role="tab" aria-selected="false">FILE HASH</a>
+    </li>
+    </ul>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for message, category in messages %}
+        {% if generated[0] %}
+            <div class="alert alert-{{ category }} my-2" role="alert">
+            <h4 class="alert-heading"><b>{{ generated[1] }} Hash Generated!</b></h4>
+            <hr/>
+            <i><span class="user-select-all">{{ message }}</span></i>
+            </div>
+        {% elif verified[0] %}
+            <div class="alert alert-{{ category }} my-2" role="alert">
+                <h4 class="alert-heading"><b>{{ verified[1] }} Hash {{ message }}</b></h4>
+                {% if message == 'did not match!' %}
+                {% if verified[3] %}
+                    <hr/>
+                    <b>Input Hash: </b><i><span class="user-select-all">{{ ch_fh_form.input_hash.data }}</span></i>
+                    <br/>
+                    <b>File Hash: </b><i><span class="user-select-all">{{ verified[2] }}</span></i>
+                {% else %}
+                    <hr/>
+                    <b>Input Hash: </b><i><span class="user-select-all">{{ ch_th_form.inputhash.data }}</span></i>
+                    <br/>
+                    <b>Text Hash: </b><i><span class="user-select-all">{{ verified[2] }}</span></i>
+                {% endif %}
+                {% endif %}
+            </div>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="text-hash" role="tabpanel" aria-labelledby="text-hash-tab">  
+        <div class="container border rounded my-3 py-3">
+        {% block texthash %}{% endblock %}
+        </div>
+        <div class="container border rounded my-3 py-3">
+        {% block checktexthash %}{% endblock %}
+        </div>
+    </div>
+    <div class="tab-pane fade" id="file-hash" role="tabpanel" aria-labelledby="file-hash-tab">
+        <div class="container border rounded my-3 py-3">
+        {% block filehash %}{% endblock %}
+        </div>
+        <div class="container border rounded my-3 py-3">
+        {% block checkfilehash %}{% endblock %}
+        </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'hash.html' %}
+
+{% block texthash %}
+<form method="POST" action="/">
+        {{ th_form.csrf_token }}
+        <h1 class="display-5 row text-white justify-content-center">GENERATE HASH</h1>
+        <div class="form-group">
+                <div class="mb-3">
+                        <div class="input-group">
+                                <div class="input-group-prepend">
+                                        {{ th_form.text.label(class="input-group-text") }}
+                                </div>
+                                {{ th_form.text(class="form-control") }}
+                        </div>
+                </div>
+                <div class="mb-3">
+                        <div class="input-group">
+                                <div class="input-group-prepend">
+                                        {{ th_form.algo.label(class="input-group-text") }}
+                                </div>
+                                {{ th_form.algo(class="form-control custom-select") }}
+                        </div>
+                </div>
+                <div class="row justify-content-center">{{ th_form.th_genr(class="btn btn-outline-light") }}</div>
+        </div>
+</form>
+{% endblock %}
+
+{% block checktexthash %}
+<form method="POST" action="/">
+        {{ ch_th_form.csrf_token }}
+        <h1 class="display-5 row text-white justify-content-center">VERIFY HASH</h1>
+        <div class="mb-3">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                                {{ ch_th_form.inputhash.label(class="input-group-text") }}
+                        </div>
+                        {{ ch_th_form.inputhash(class="form-control") }}
+                </div>
+        </div>
+        <div class="mb-3">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                                {{ ch_th_form.checktext.label(class="input-group-text") }}
+                        </div>
+                        {{ ch_th_form.checktext(class="form-control") }}
+                </div>
+        </div>
+        <div class="mb-3">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                                {{ ch_th_form.algo.label(class="input-group-text") }}
+                        </div>
+                        {{ ch_th_form.algo(class="form-control custom-select") }}
+                </div>
+        </div>
+        
+        <div class="row justify-content-center">{{ ch_th_form.ch_thash(class="btn btn-outline-light") }}</div>
+</form>
+{% endblock %}
+
+{% block filehash %}
+<form method="POST" action="/" enctype="multipart/form-data">
+        {{ fh_form.csrf_token }}
+        <h1 class="display-5 row text-white justify-content-center">GENERATE HASH</h1>
+        <div class="form-group">
+                <div class="mb-3">
+                        <div class="input-group">
+                                <div class="input-group-prepend">{{ fh_form.fileinput.label(class="input-group-text") }}</div>
+                                <div class="custom-file">
+                                        {{ fh_form.fileinput(class="custom-file-input") }}
+                                        <label class="custom-file-label">Choose a file...</label>
+                                </div>
+                        </div>
+                </div>
+                <div class="mb-3">
+                        <div class="input-group">
+                                <div class="input-group-prepend">
+                                        {{ fh_form.algo.label(class="input-group-text") }}
+                                </div>
+                                {{ fh_form.algo(class="form-control custom-select") }}
+                        </div>
+                </div>
+                <div class="row justify-content-center">{{ fh_form.fh_genr(class="btn btn-outline-light") }}</div>
+        </div>
+</form>
+{% endblock %}
+
+{% block checkfilehash %}
+<form method="POST" action="/" enctype="multipart/form-data">
+        {{ ch_fh_form.csrf_token }}
+        
+        <div class="mb-3">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                                {{ ch_fh_form.input_hash.label(class="input-group-text") }}
+                        </div>
+                        {{ ch_fh_form.input_hash(class="form-control") }}
+                </div>
+        </div>
+        <div class="mb-3">
+                <div class="input-group">
+                        <div class="input-group-prepend">{{ ch_fh_form.file_input.label(class="input-group-text") }}</div>
+                        <div class="custom-file">
+                                {{ ch_fh_form.file_input(class="custom-file-input") }}
+                                <label class="custom-file-label">Choose a file...</label>
+                        </div>
+                </div>
+        </div>
+        <div class="mb-3">
+                <div class="input-group">
+                        <div class="input-group-prepend">
+                                {{ ch_fh_form.algo.label(class="input-group-text") }}
+                        </div>
+                        {{ ch_fh_form.algo(class="form-control custom-select") }}
+                </div>
+                <div class="row justify-content-center my-3">{{ ch_fh_form.ch_fhash(class="btn btn-outline-light") }}</div>
+        </div>
+</form>
+{% endblock %}
