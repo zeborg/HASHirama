@@ -1,6 +1,7 @@
 ![MIT License](https://img.shields.io/github/license/zeborg/HASHirama)
 # HASHirama
-HASHirama is a web application for hashing texts as well as binary files.
+HASHirama is a web application for hashing texts as well as binary files.\
+[Try HASHirama](https://zeborg.pythonanywhere.com/) (hosted on PythonAnywhere)
 #### Algorithms Supported
 
 - BLAKE2b
