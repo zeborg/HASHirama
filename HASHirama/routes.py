@@ -55,5 +55,4 @@ def home():
 
 @app.errorhandler(413)
 def handle_413(err):
-    return f'File size exceeded. Maximum allowed file size: {MAX_FILE_SIZE_MB} MB', 413
-
+    return f'File size exceeded. Maximum allowed file size: {MAX_FILE_SIZE_MB} MB. <a href="{url_for("home")}">Return to Home</a>', 413

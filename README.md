@@ -2,7 +2,7 @@
 # HASHirama
 HASHirama is a web application for hashing texts as well as binary files.\
 [Try HASHirama](https://zeborg.pythonanywhere.com/) (hosted on PythonAnywhere)
-#### Algorithms Supported
+### Algorithms Supported
 
 - BLAKE2b
 - BLAKE2s
@@ -19,7 +19,7 @@ HASHirama is a web application for hashing texts as well as binary files.\
 ### Installation
 HASHirama uses [Flask](https://flask.palletsprojects.com/en/1.1.x/) as the backend framework and utilizes [Bootstrap 4.5](https://getbootstrap.com/docs/4.5/getting-started/introduction/) for styles.
 
-##### Using HASHirama in a virtual environment:
+#### Using HASHirama in a virtual environment:
 Create and activate a virtual environment (`myvirtualenv` in the example below) and install the dependencies provided in `requirements.txt` by executing the following command:
 ```sh
 (myvirutalenv) $ pip install -r requirements.txt
@@ -53,5 +53,5 @@ Default maximum file upload size is 50 MB, however you can change it in `__init_
 \
 **NOTE:** Use a proper WSGI instead of using the Flask production environment to avoid unusual behavior such as connection reset upon error handling
 
-## Contributions and Improvements
+### Contributions and Improvements
 Always welcome!
