@@ -1,6 +1,5 @@
-import io
-from HASHirama import app, forms, os, hashfx, hashlib, MAX_FILE_SIZE_MB
-from flask import render_template, url_for, redirect, flash
+from HASHirama import app, forms, os, hashfx, MAX_FILE_SIZE_MB
+from flask import render_template, url_for, flash
 from werkzeug.utils import secure_filename
 
 @app.route('/', methods=['GET','POST'])

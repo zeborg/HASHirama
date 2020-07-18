@@ -20,7 +20,7 @@ HASHirama is a web application for hashing texts as well as binary files.\
 HASHirama uses [Flask](https://flask.palletsprojects.com/en/1.1.x/) as the backend framework and utilizes [Bootstrap 4.5](https://getbootstrap.com/docs/4.5/getting-started/introduction/) for styles.
 
 ##### Using HASHirama in a virtual environment:
-Create and activate a virtual environment (`myvirtualenv` in the example below) and install the dependencies provided in `requirements.txt` by execting the following command:
+Create and activate a virtual environment (`myvirtualenv` in the example below) and install the dependencies provided in `requirements.txt` by executing the following command:
 ```sh
 (myvirutalenv) $ pip install -r requirements.txt
 ```
