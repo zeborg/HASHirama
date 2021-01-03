@@ -14,16 +14,21 @@ def home():
     if th_form.validate_on_submit():
         thash = hashfx.thash()
         hashgen = th_form.text.data
-        msg = thash.algo(hashgen, th_form.algo.data)
-        h_genr = (True,forms.hashlabel[th_form.algo.data])
+        msg = thash.algo(hashgen, th_form.algo.data, th_form.chain.data)
+        h_genr = (True,forms.hashlabel[th_form.algo.data],)
+
         flash('success', msg)
 
     elif ch_th_form.validate_on_submit():
         ch_thash = hashfx.thash()
         hashgen = ch_th_form.checktext.data
-        genhash = ch_thash.algo(hashgen, ch_th_form.algo.data)
+        genhash = ch_thash.algo(hashgen, ch_th_form.algo.data, ch_th_form.chain.data)
         h_veri = (True,forms.hashlabel[th_form.algo.data],genhash,False)
-        flash('success', 'matched!') if ch_th_form.inputhash.data == genhash else flash('warning', 'did not match!')
+        
+        if ch_th_form.inputhash.data.strip('\n') == genhash:
+            flash('success', 'matched!') 
+        else:
+            flash('warning', 'did not match!')
 
     elif fh_form.validate_on_submit():
         f = fh_form.fileinput.data
@@ -33,9 +38,10 @@ def home():
         if not os.path.exists(app.config['UPLOADS_FOLDER']):
             os.makedirs(app.config['UPLOADS_FOLDER'])
         f.save(filename_str)
-        msg = fhash.algo(filename_str, 4096, fh_form.algo.data)
+        msg = fhash.algo(filename_str, 4096, fh_form.algo.data, fh_form.chain.data)
         os.remove(filename_str)
         h_genr = (True,forms.hashlabel[fh_form.algo.data])
+        
         flash('success', msg)
 
     elif ch_fh_form.validate_on_submit():
@@ -46,10 +52,14 @@ def home():
         if not os.path.exists(app.config['UPLOADS_FOLDER']):
             os.makedirs(app.config['UPLOADS_FOLDER'])
         f.save(filename_str)
-        genhash = fhash.algo(filename_str, 4096, ch_fh_form.algo.data)
+        genhash = fhash.algo(filename_str, 4096, ch_fh_form.algo.data, ch_fh_form.chain.data)
         os.remove(filename_str)
         h_veri = (True,forms.hashlabel[ch_fh_form.algo.data],genhash,True)
-        flash('success', 'matched!') if ch_fh_form.input_hash.data == genhash else flash('warning', 'did not match!')
+        
+        if ch_fh_form.input_hash.data.strip('\n') == genhash:
+            flash('success', 'matched!')
+        else:
+            flash('warning', 'did not match!')
 
     return render_template('home.html', th_form=th_form, ch_th_form=ch_th_form, fh_form=fh_form, ch_fh_form=ch_fh_form, generated=h_genr, verified=h_veri)
 

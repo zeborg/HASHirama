@@ -6,7 +6,7 @@
         <h4 class="display-5 row text-white justify-content-center">GENERATE HASH</h4>
         <div class="form-group">
                 <div class="mb-3">
-                        <div class="input-group">
+                        <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Enter the text you want to generate a hash for.">
                                 <div class="input-group-prepend">
                                         {{ th_form.text.label(class="input-group-text") }}
                                 </div>
@@ -14,14 +14,23 @@
                         </div>
                 </div>
                 <div class="mb-3">
-                        <div class="input-group">
+                        <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Select the hashing algorithm.">
                                 <div class="input-group-prepend">
                                         {{ th_form.algo.label(class="input-group-text") }}
                                 </div>
                                 {{ th_form.algo(class="form-control custom-select") }}
                         </div>
                 </div>
-                <div class="row justify-content-center">{{ th_form.th_genr(class="btn btn-outline-light") }}</div>
+                <div class="mb-3">
+                        <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Enter the no. of hash repetitions (an integer in the range of 1 to 1000000).">
+                                <div class="input-group-prepend">
+                                        {{ th_form.chain.label(class="input-group-text") }}
+                                </div>
+                                {{ th_form.chain(class="form-control custom-input",type="number",min=1,max=1000000) }}
+                        </div>
+                </div>
+                
+                <div class="row justify-content-center">{{ th_form.th_genr(class="btn btn-outline-light pillbg") }}</div>
         </div>
 </form>
 {% endblock %}
@@ -31,7 +40,7 @@
         {{ ch_th_form.csrf_token }}
         <h4 class="display-5 row text-white justify-content-center">VERIFY HASH</h4>
         <div class="mb-3">
-                <div class="input-group">
+                <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Enter the hashed text you want to verify.">
                         <div class="input-group-prepend">
                                 {{ ch_th_form.inputhash.label(class="input-group-text") }}
                         </div>
@@ -39,7 +48,7 @@
                 </div>
         </div>
         <div class="mb-3">
-                <div class="input-group">
+                <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Enter the text you want to verify the hash for.">
                         <div class="input-group-prepend">
                                 {{ ch_th_form.checktext.label(class="input-group-text") }}
                         </div>
@@ -47,15 +56,23 @@
                 </div>
         </div>
         <div class="mb-3">
-                <div class="input-group">
+                <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Select the hashing algorithm.">
                         <div class="input-group-prepend">
                                 {{ ch_th_form.algo.label(class="input-group-text") }}
                         </div>
                         {{ ch_th_form.algo(class="form-control custom-select") }}
                 </div>
         </div>
-        
-        <div class="row justify-content-center">{{ ch_th_form.ch_thash(class="btn btn-outline-light") }}</div>
+        <div class="mb-3">
+                <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Enter the no. of hash repetitions (an integer in the range of 1 to 1000000).">
+                        <div class="input-group-prepend">
+                                {{ ch_th_form.chain.label(class="input-group-text") }}
+                        </div>
+                        {{ ch_th_form.chain(class="form-control custom-input",type="number",min=1,max=1000000) }}
+                </div>
+        </div>
+
+        <div class="row justify-content-center">{{ ch_th_form.ch_thash(class="btn btn-outline-light pillbg") }}</div>
 </form>
 {% endblock %}
 
@@ -65,7 +82,7 @@
         <h4 class="display-5 row text-white justify-content-center">GENERATE HASH</h4>
         <div class="form-group">
                 <div class="mb-3">
-                        <div class="input-group">
+                        <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Upload the file you want to generate a hash for.">
                                 <div class="input-group-prepend">{{ fh_form.fileinput.label(class="input-group-text") }}</div>
                                 <div class="custom-file">
                                         {{ fh_form.fileinput(class="custom-file-input") }}
@@ -74,14 +91,23 @@
                         </div>
                 </div>
                 <div class="mb-3">
-                        <div class="input-group">
+                        <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Select the hashing algorithm.">
                                 <div class="input-group-prepend">
                                         {{ fh_form.algo.label(class="input-group-text") }}
                                 </div>
                                 {{ fh_form.algo(class="form-control custom-select") }}
                         </div>
                 </div>
-                <div class="row justify-content-center">{{ fh_form.fh_genr(class="btn btn-outline-light") }}</div>
+                <div class="mb-3">
+                        <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Enter the no. of hash repetitions (an integer in the range of 1 to 1000000).">
+                                <div class="input-group-prepend">
+                                        {{ fh_form.chain.label(class="input-group-text") }}
+                                </div>
+                                {{ fh_form.chain(class="form-control custom-input",type="number",min=1,max=1000000) }}
+                        </div>
+                </div>
+                
+                <div class="row justify-content-center">{{ fh_form.fh_genr(class="btn btn-outline-light pillbg") }}</div>
         </div>
 </form>
 {% endblock %}
@@ -91,15 +117,15 @@
         {{ ch_fh_form.csrf_token }}
         <h4 class="display-5 row text-white justify-content-center">VERIFY HASH</h4>
         <div class="mb-3">
-                <div class="input-group">
+                <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Enter the hashed text you want to verify.">
                         <div class="input-group-prepend">
                                 {{ ch_fh_form.input_hash.label(class="input-group-text") }}
                         </div>
-                        {{ ch_fh_form.input_hash(class="form-control") }}
+                        {{ ch_fh_form.input_hash(class="form-control custom-input") }}
                 </div>
         </div>
         <div class="mb-3">
-                <div class="input-group">
+                <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Upload the file you want to verify the hash for.">
                         <div class="input-group-prepend">{{ ch_fh_form.file_input.label(class="input-group-text") }}</div>
                         <div class="custom-file">
                                 {{ ch_fh_form.file_input(class="custom-file-input") }}
@@ -108,13 +134,22 @@
                 </div>
         </div>
         <div class="mb-3">
-                <div class="input-group">
+                <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Select the hashing algorithm.">
                         <div class="input-group-prepend">
                                 {{ ch_fh_form.algo.label(class="input-group-text") }}
                         </div>
                         {{ ch_fh_form.algo(class="form-control custom-select") }}
                 </div>
-                <div class="row justify-content-center my-3">{{ ch_fh_form.ch_fhash(class="btn btn-outline-light") }}</div>
         </div>
+        <div class="mb-3">
+                <div class="input-group desc" data-container="body" data-toggle="popover" data-trigger="hover" data-placement="left" data-content="Enter the no. of hash repetitions (an integer in the range of 1 to 1000000).">
+                        <div class="input-group-prepend">
+                                {{ ch_fh_form.chain.label(class="input-group-text") }}
+                        </div>
+                        {{ ch_fh_form.chain(class="form-control custom-input",type="number",min=1,max=1000000) }}
+                </div>
+        </div>
+        
+        <div class="row justify-content-center my-3">{{ ch_fh_form.ch_fhash(class="btn btn-outline-light pillbg") }}</div>
 </form>
 {% endblock %}

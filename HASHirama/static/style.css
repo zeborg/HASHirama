@@ -1,3 +1,18 @@
+body {
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 1000;
+}
+
+.outbg {
+    background: url("hashbg.png");
+    background-repeat: repeat;
+}
+
+.pillbg {
+    background: url("hashbgsm.png");
+    background-repeat: repeat;
+}
+
 .nav-pills .pill-danger .nav-link {
     background-color: #fff;
     color: #dc3545;

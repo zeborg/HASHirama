@@ -2,39 +2,42 @@
 {% block template %}
     <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
     <li class="nav-item pill-danger" role="presentation">
-        <a class="nav-link active" id="text-hash-tab" data-toggle="pill" href="#text-hash" role="tab" aria-selected="true">TEXT HASH</a>
+        <a class="nav-link active pillbg mx-1 shadow" id="text-hash-tab" data-toggle="pill" href="#text-hash" role="tab" aria-selected="true">TEXT HASH</a>
     </li>
     <li class="nav-item pill-danger" role="presentation">
-        <a class="nav-link" id="file-hash-tab" data-toggle="pill" href="#file-hash" role="tab" aria-selected="false">FILE HASH</a>
+        <a class="nav-link pillbg mx-1 shadow" id="file-hash-tab" data-toggle="pill" href="#file-hash" role="tab" aria-selected="false">FILE HASH</a>
     </li>
     </ul>
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for message, category in messages %}
         {% if generated[0] %}
-            <div class="alert alert-{{ category }} my-2" role="alert">
+            <div class="alert alert-{{ category }} alert-dismissable fade show my-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="alert-heading"><b>{{ generated[1] }} Hash Generated!</b></h4>
                 <hr/>
-                <input id="hash" class="d-none" value="{{ message }}">
-                <i>
-                    <div class="alert alert-success user-select-all text-break">{{ message }}</div>
-                </i>
-                <button class="btn btn-outline-success col" id="hashcopy" data-clipboard-text="hash">COPY HASH</button>
+                <i><div id="hash" class="alert alert-success user-select-all text-break">{{ message }}</div></i>
+                <a tabindex="0" role="button" class="btn btn-outline-success col" id="hashcopy" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Hash Copied!" data-clipboard-target="#hash">COPY HASH</a>
             </div>
         {% elif verified[0] %}
-            <div class="alert alert-{{ category }} my-2" role="alert">
+            <div class="alert alert-{{ category }} alert-dismissable fade show my-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="alert-heading"><b>{{ verified[1] }} Hash {{ message }}</b></h4>
                 {% if message == 'did not match!' %}
                 {% if verified[3] %}
                     <hr/>
-                    <b>Input Hash: </b><i><span class="user-select-all text-break">{{ ch_fh_form.input_hash.data }}</span></i>
+                    <b><u>Hashed Input:</u> </b><i><span class="user-select-all text-break">{{ ch_fh_form.input_hash.data }}</span></i>
                     <br/>
-                    <b>File Hash: </b><i><span class="user-select-all text-break">{{ verified[2] }}</span></i>
+                    <b><u>File Hash:</u> </b><i><span class="user-select-all text-break">{{ verified[2] }}</span></i>
                 {% else %}
                     <hr/>
-                    <b>Input Hash: </b><i><span class="user-select-all text-break">{{ ch_th_form.inputhash.data }}</span></i>
+                    <b><u>Hashed Input:</u> </b><i><span class="user-select-all text-break">{{ ch_th_form.inputhash.data }}</span></i>
                     <br/>
-                    <b>Text Hash: </b><i><span class="user-select-all text-break">{{ verified[2] }}</span></i>
+                    <b><u>Text Hash:</u> </b><i><span class="user-select-all text-break">{{ verified[2] }}</span></i>
                 {% endif %}
                 {% endif %}
             </div>
@@ -43,21 +46,21 @@
     {% endif %}
     {% endwith %}
     <div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="text-hash" role="tabpanel" aria-labelledby="text-hash-tab">  
-        <div class="container border rounded my-3 py-3">
-        {% block texthash %}{% endblock %}
+        <div class="tab-pane fade show active" id="text-hash" role="tabpanel" aria-labelledby="text-hash-tab">  
+            <div class="container border rounded my-3 py-3">
+            {% block texthash %}{% endblock %}
+            </div>
+            <div class="container border rounded my-3 py-3">
+            {% block checktexthash %}{% endblock %}
+            </div>
         </div>
-        <div class="container border rounded my-3 py-3">
-        {% block checktexthash %}{% endblock %}
+        <div class="tab-pane fade" id="file-hash" role="tabpanel" aria-labelledby="file-hash-tab">
+            <div class="container border rounded my-3 py-3">
+            {% block filehash %}{% endblock %}
+            </div>
+            <div class="container border rounded my-3 py-3">
+            {% block checkfilehash %}{% endblock %}
+            </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="file-hash" role="tabpanel" aria-labelledby="file-hash-tab">
-        <div class="container border rounded my-3 py-3">
-        {% block filehash %}{% endblock %}
-        </div>
-        <div class="container border rounded my-3 py-3">
-        {% block checkfilehash %}{% endblock %}
-        </div>
-    </div>
     </div>
 {% endblock %}
