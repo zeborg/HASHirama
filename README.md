@@ -57,6 +57,7 @@ Once the installation steps are done, CD to the directory where `app.py` is loca
 ```
 Default maximum file upload size is 100 MB, however you can change it in `__init__.py`
 \
+\
 **NOTE:** Use a proper WSGI instead of using the Flask production environment for better security and to avoid unusual behavior such as connection reset upon error handling. [Here are a few deployment options as suggested by Flask itself](https://flask.palletsprojects.com/en/1.1.x/deploying/).
 
 ### Contributions and Improvements
